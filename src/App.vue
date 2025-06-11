@@ -43,27 +43,36 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import CurveGraph from './components/CurveGraph.vue';
+import { ref, computed } from 'vue'
+import CurveGraph from './components/CurveGraph.vue'
 
-const scale = ref(1);
-const functionName = ref<'sin' | 'cos' | 'log' | 'exp'>('sin');
-
+// Step 1: Define the allowed function values with 'as const'
 const options = [
   { value: 'sin', label: 'Sine' },
   { value: 'cos', label: 'Cosine' },
   { value: 'log', label: 'Logarithm' },
   { value: 'exp', label: 'Exponential' }
-];
+] as const
+
+// Step 2: Infer the union type from the array
+type FunctionName = typeof options[number]['value']
+
+// Step 3: Use the inferred type in refs
+const functionName = ref<FunctionName>('sin')
+const scale = ref(1)
 
 const generatedCode = computed(() => {
   switch (functionName.value) {
-    case 'sin': return 'y = Math.sin(x)';
-    case 'cos': return 'y = Math.cos(x)';
-    case 'log': return 'y = Math.log(x)';
-    case 'exp': return 'y = Math.exp(x)';
+    case 'sin':
+      return 'y = Math.sin(x)'
+    case 'cos':
+      return 'y = Math.cos(x)'
+    case 'log':
+      return 'y = Math.log(x)'
+    case 'exp':
+      return 'y = Math.exp(x)'
   }
-});
+})
 </script>
 
 <style scoped>
