@@ -14,6 +14,7 @@
         <section class="panel-section">
           <label class="section-label">Choose Function:</label>
           <div class="chip-container">
+            
             <button
               v-for="option in options"
               :key="option.value"
