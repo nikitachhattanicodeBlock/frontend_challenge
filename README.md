@@ -1,54 +1,153 @@
-# Frontend Challenge
+Here’s your complete `README.md` file in plain text format based on the challenge requirements and your completed work:
 
-## Overview
-This challenge is designed to assess your frontend development skills, specifically focusing on component development, documentation, and testing practices.
+---
 
-It is expected to be completed within a day. This challenge is designed to assess all levels of frontend developers, so please do not worry if you are unable to complete all the requirements.
+````
+# CurveGraph Component (Vue 3)
 
-You are encouraged to ask questions if you are unsure about any part of the challenge. We are here to help you succeed.
+This project includes a reusable and interactive Vue 3 component called `CurveGraph` that renders a non-linear mathematical curve (sin, cos, log, exp) using SVG.
 
-## Project Commands
+---
 
-The following commands assume you are using npm, however you can use yarn/bun/pnpm if you prefer.
+## 🧩 Features
 
-To start storybook, run the following command:
+- 📈 Dynamically renders curves based on mathematical functions
+- ⚙️ Supports: `sin`, `cos`, `log`, and `exp`
+- 🎛️ Accepts a `scale` prop to stretch or compress the curve
+- 🧪 Unit tested with Vitest and @testing-library/vue
+- 📘 Documented with Storybook (interactive UI explorer)
+- 💡 No UI libraries used — built entirely from scratch
+
+---
+
+## 🛠️ Tech Stack
+
+- Vue 3 with `<script setup>`
+- TypeScript
+- Vite
+- Vitest + Testing Library
+- Storybook for documentation
+
+---
+
+## 📦 Setup Instructions
+
+### 1. Clone the repo
 
 ```bash
-npm run storybook
+git clone https://github.com/nikitachhattanicodeBlock/frontend_challenge.git
+cd frontend_challenge
+````
+
+### 2. Install dependencies
+
+```bash
+npm install
 ```
 
-To start Vite/Vue, run the following command:
+### 3. Run the development server
 
 ```bash
 npm run dev
 ```
 
-## Requirements
+---
 
-### 1. Component Development
-Component development is the core of this challenge. You are expected to create a Vue 3 component that generates a curve based that shifts based on a user input.
+## 🧪 Run Tests
 
-- Create a Vue 3 component based on the design specifications provided in the `docs` folder. 
-- You may use any non-linear function such as `sin`, `cos`, `tan`, `log`, `exp`, etc. to generate the curve. 
-- You may add supporting packages, but you must not use any UI libraries. 
-- You may use refernce code from online sources and docuemntation, but you will be expected to explain the code you have used and to cite your sources. This includes any AI generated code.
+To execute the unit tests:
 
-### 2. Documentation
-Documenation is important for the maintainability and usability of the component. It helps both new developers understand the component and existing developers to maintain it.
+```bash
+npm run test
+```
 
-- Include any inline documentation where appropriate
-- Create Storybook documentation for the component
-  - Include different states and variations
-  - Document props, events, and slots
-  - Provide usage examples
-- Include a component README with setup and usage instructions
+All function variations (`sin`, `cos`, `log`, `exp`) are covered.
 
-### 3. Testing
-Automated testing is important to ensure the component works as expected and to prevent regressions. It also speeds up the development process by providing quick feedback.
+---
 
-- Write comprehensive tests for the component
-- You may choose to use something otther than vitest for testing.
+## 📘 Run Storybook
 
-## Good luck!
-We're excited to see your approach to solving this challenge. Remember, we're not just looking at whether the component works, but also how you write your code.
+To launch the Storybook documentation:
 
+```bash
+npm run storybook
+```
+
+Explore all component states and props visually in the browser.
+
+---
+
+## 📂 File Structure
+
+```
+.
+├── components/
+│   └── CurveGraph.vue          # Main component
+├── tests/
+│   └── CurveGraph.test.ts      # Vitest test cases
+├── .storybook/                 # Storybook config
+├── stories/
+│   └── CurveGraph.stories.ts   # Component docs and examples
+├── vitest.setup.ts             # Testing config
+├── tsconfig.json               # TypeScript config
+└── README.md
+```
+
+---
+
+## ✨ Props
+
+| Prop           | Type     | Required | Description                               |         |   |                                     |
+| -------------- | -------- | -------- | ----------------------------------------- | ------- | - | ----------------------------------- |
+| `scale`        | `number` | ✅        | Controls the stretch/compression of curve |         |   |                                     |
+| `functionName` | \`'sin'  | 'cos'    | 'log'                                     | 'exp'\` | ✅ | Defines the type of curve to render |
+
+---
+
+## ✅ Example Usage
+
+```vue
+<CurveGraph :scale="1" functionName="sin" />
+```
+
+---
+
+## 🧪 Test Coverage
+
+* Component renders for each `functionName` value
+* `polyline` is rendered with correct `points`
+* Edge case handled when `scale = 0`
+
+---
+
+## 📎 Notes
+
+* This challenge avoids all UI libraries as per requirements
+* Uses native SVG rendering for the curve
+* Fully typed using TypeScript
+* All sources and external help (e.g., AI/code references) have been cited during development
+
+---
+
+## 👤 Author
+
+Nikita Chhattani
+[GitHub Repo](https://github.com/nikitachhattanicodeBlock/frontend_challenge)
+
+---
+
+## 📄 License
+
+This project is for demo/challenge purposes and does not currently use any license.
+
+```
+
+---
+
+Let me know if you'd like to also:
+- Add a badge for build/tests
+- Push this directly to your repo
+- Submit a polished version as a portfolio showcase
+
+Would you like the Markdown version too?
+```
