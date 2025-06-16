@@ -1,14 +1,15 @@
 <template>
   <!-- Wrapper that defines the dynamic CSS variable (--thumb-color) for the slider thumb -->
-  <div
+  <div>
+     <!-- Error message shown if the slider value is below 20 -->
+     <p v-if="internalValue < 20" class="error-message">
+      ⚠ The value is below the minimum threshold (20%).
+    </p>
+    <div
     class="slider-wrapper"
     :style="{ '--thumb-color': internalValue < 20 ? '#f87171' : '#84cc16' }"
   >
-    <!-- Error message shown if the slider value is below 20 -->
-    <p v-if="internalValue < 20" class="error-message">
-      ⚠ The value is below the minimum threshold (20%).
-    </p>
-
+  
     <!-- Slider input control -->
     <input
       type="range"
@@ -21,6 +22,7 @@
 
     <!-- Percentage display -->
     <p class="percentage-label">{{ internalValue }}%</p>
+  </div>
   </div>
 </template>
 
