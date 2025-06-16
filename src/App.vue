@@ -1,18 +1,15 @@
 <template>
   <div class="min-h-screen bg-gray-100 p-8">
     <div>
-      <CurveGraph
-        title="Performance Score"
-        description="This is a description for this component. It is optional."
-        :value="45"
-        :min-value="50"
-      />
+      <CurveGraph v-model:spread="spread" />
     </div>
   </div>
 </template>
 
 <script setup>
 import CurveGraph from "./components/CurveGenerator.vue";
+import { ref } from 'vue'
+const spread = ref(50)
 </script>
 
 <style>
