@@ -1,36 +1,35 @@
 <template>
-    <div class="curve-container">
-      <svg viewBox="0 0 868 617" class="curve-svg">
-        <!-- Background and base line -->
-        <rect width="100%" height="100%" fill="#fff" />
-        <line x1="70" y1="550" x2="820" y2="550" stroke="#ccc" stroke-width="2" />
+    <div
+      class="curve-container"
+      :class="{ 'danger-bg': internalSpread < 20 }"
+    >
+      <!-- Title & Description -->
+      <Title />
+      <Description />
   
-        <!-- SVG Curve -->
+      <!-- SVG Curve -->
+      <svg viewBox="0 0 868 617" class="curve-svg">
+        <rect width="100%" height="100%" :fill="internalSpread < 20 ? '#fff1f2' : '#f6ffe9'" />
+        <line x1="70" y1="550" x2="820" y2="550" stroke="#ccc" stroke-width="2" />
         <path
           :d="curvePath"
           fill="none"
-          stroke="#555"
-          stroke-width="2"
+          :stroke="internalSpread < 20 ? '#f87171' : '#4ade80'"
+          stroke-width="6"
           stroke-linecap="round"
         />
       </svg>
   
-      <!-- Slider Control -->
-      <div class="slider-wrapper">
-        <input
-          type="range"
-          min="0"
-          max="100"
-          v-model="internalSpread"
-          :class="{ danger: internalSpread < 30 }"
-          data-testid="spread-slider"
-        />
-      </div>
+      <!-- SliderScale Component -->
+      <SliderScale v-model="internalSpread" />
     </div>
   </template>
   
   <script setup lang="ts">
   import { computed, defineProps, defineEmits } from 'vue'
+  import Title from '../components/Title.vue'
+  import Description from '../components/Description.vue'
+  import SliderScale from '../components/SliderScale.vue'
   
   const props = defineProps({
     spread: {
@@ -41,13 +40,12 @@
   
   const emit = defineEmits(['update:spread'])
   
-  // Sync prop for v-model:spread
   const internalSpread = computed({
     get: () => props.spread,
-    set: (val) => emit('update:spread', Number(val)) // ensure type safety
+    set: (val) => emit('update:spread', Number(val))
   })
   
-  // Curve points
+  // Curve logic
   const startX = 80
   const endX = 750
   const startY = 545
@@ -62,32 +60,25 @@
   
   <style scoped>
   .curve-container {
-    max-width: 900px;
+    max-width: 700px;
     margin: auto;
-    padding: 16px;
-    font-family: sans-serif;
+    padding: 24px;
+    font-family: 'Inter', sans-serif;
+    background-color: #f6ffe9;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+  }
+  
+  .curve-container.danger-bg {
+    background-color: #fff1f2;
   }
   
   .curve-svg {
     width: 100%;
     height: auto;
-    border: 1px solid #eee;
-    background: #fff;
-  }
-  
-  .slider-wrapper {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-  }
-  
-  input[type='range'] {
-    width: 200px;
-    accent-color: #666;
-  }
-  
-  input[type='range'].danger {
-    accent-color: red;
+    background-color: transparent;
+    border-radius: 12px;
   }
   </style>
   

@@ -9,7 +9,7 @@
         min="0"
         max="100"
         v-model="internalValue"
-        :class="{ danger: internalValue < 30 }"
+        :class="{ danger: internalValue < 20 }"
         data-testid="spread-slider"
       />
       <p class="percentage-label">{{ internalValue }}%</p>
