@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
-import CurveGenerator from '../components/CurveGenerator.vue';
+import type { Meta, StoryObj } from '@storybook/vue3'
+import CurveGenerator from '../components/CurveGenerator.vue'
 
 const meta = {
   title: 'Components/CurveGenerator',
@@ -7,68 +7,37 @@ const meta = {
   argTypes: {
     spread: {
       control: { type: 'range', min: 0, max: 100, step: 1 },
-      description: 'Controls horizontal position of the curve control point (0–100)',
+      description: 'Controls the skew of the curve (0 = left, 100 = right)',
     },
   },
   args: {
     spread: 50,
+  },
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: 'A dynamic SVG curve that reacts to a `spread` value. Below 20%, it enters a danger state.',
+      },
+    },
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof CurveGenerator>;
+} satisfies Meta<typeof CurveGenerator>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  name: 'Center Arch',
+  name: 'Default (Center Curve)',
   args: {
     spread: 50,
   },
-};
-
-export const LeftSkewed: Story = {
-  name: 'Left Curve',
-  args: {
-    spread: 20,
-  },
-};
-
-export const RightSkewed: Story = {
-  name: 'Right Curve',
-  args: {
-    spread: 80,
-  },
-};
+}
 
 export const DangerZone: Story = {
-  name: 'Below Threshold (Red Slider)',
+  name: 'Danger State (Below 20%)',
   args: {
-    spread: 25,
+    spread: 15,
   },
-};
-
-export const Playground: Story = {
-  name: 'Interactive Playground',
-  render: (args) => ({
-    components: { CurveGenerator },
-    setup() {
-      return { args };
-    },
-    template: `
-      <div style="text-align: center;">
-        <CurveGenerator v-bind="args" />
-        <input 
-          type="range" 
-          min="0" 
-          max="100" 
-          v-model="args.spread" 
-          style="margin-top: 1rem; width: 200px;"
-        />
-      </div>
-    `,
-  }),
-  args: {
-    spread: 50,
-  },
-};
+}
